@@ -1,4 +1,4 @@
-package jwtauth
+package JwtAuth
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-func jwtauth(inputedUsername string, inputedPassword string) any {
+func JwtAuth(inputedUsername string, inputedPassword string) any {
 	dbHost := utils.DotEnv("DB_HOST")
 	dbPort := utils.DotEnv("DB_PORT")
 	dbUser := utils.DotEnv("DB_USER")
