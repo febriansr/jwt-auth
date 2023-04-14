@@ -12,7 +12,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-func jwtauth(inputedUser *model.User) any {
+func jwtauth(inputedUsername string, inputedPassword string) any {
 	dbHost := utils.DotEnv("DB_HOST")
 	dbPort := utils.DotEnv("DB_PORT")
 	dbUser := utils.DotEnv("DB_USER")
@@ -38,5 +38,9 @@ func jwtauth(inputedUser *model.User) any {
 	userRepo := repository.NewUserRepo(db)
 	userUsecase := usecase.NewUserUsecase(userRepo)
 
-	return userUsecase.Login(inputedUser)
+	var inputedUser model.User
+	inputedUser.Username = inputedUsername
+	inputedUser.Password = inputedPassword
+
+	return userUsecase.Login(&inputedUser)
 }
